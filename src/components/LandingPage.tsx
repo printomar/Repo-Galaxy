@@ -7,9 +7,9 @@ interface Props {
 }
 
 const EXAMPLES = [
-  { display: 'vercel/next.js', value: 'github.com/vercel/next.js' },
-  { display: 'vuejs/core', value: 'github.com/vuejs/core' },
-  { display: 'facebook/react', value: 'github.com/facebook/react' },
+  { display: 'vitejs/vite', value: 'github.com/vitejs/vite' },
+  { display: 'expressjs/express', value: 'github.com/expressjs/express' },
+  { display: 'axios/axios', value: 'github.com/axios/axios' },
 ];
 
 export function LandingPage({ onLaunch, onDemo }: Props) {
