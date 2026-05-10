@@ -7,7 +7,7 @@ import { Toast } from './components/Toast';
 import { DEMO_REPO } from './data/demoRepo';
 import { fetchRepoGalaxyData } from './services/github';
 import { readUrlState, writeUrlState } from './services/urlState';
-import type { GalaxyNode, RepoGalaxyData, TweaksState, ViewMode } from './types';
+import type { GalaxyNode, RepoGalaxyData, TweaksState } from './types';
 import { extHex, FILE_TYPES, galaxyPersonality } from './utils/fileTypes';
 
 const DEFAULT_TWEAKS: TweaksState = {
@@ -140,12 +140,6 @@ export function App() {
     [allExts],
   );
 
-  const cycleViewMode = useCallback(() => {
-    const order: ViewMode[] = ['force', 'orbital', 'constellation'];
-    const next = order[(order.indexOf(tweaks.viewMode) + 1) % order.length];
-    setTweak('viewMode', next);
-  }, [setTweak, tweaks.viewMode]);
-
   const shareMap = useCallback(async () => {
     const url = writeUrlState({
       owner: repo.owner === DEMO_REPO.owner && repo.name === DEMO_REPO.name ? undefined : repo.owner,
@@ -204,9 +198,6 @@ export function App() {
           <button className="nav-btn ghost" onClick={() => setTweak('showDeps', !tweaks.showDeps)}>
             <DepsIcon active={tweaks.showDeps} />
             {tweaks.showDeps ? 'Deps on' : 'Deps off'}
-          </button>
-          <button className="nav-btn primary" onClick={cycleViewMode}>
-            {tweaks.viewMode === 'force' ? '⬡ Force' : tweaks.viewMode === 'orbital' ? '◎ Orbital' : '✦ Constellation'}
           </button>
           <button className="nav-btn share" onClick={() => void shareMap()}>
             <ShareIcon />
