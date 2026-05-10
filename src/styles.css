@@ -190,7 +190,7 @@ button, input { font: inherit; }
 .canvas-wrap { flex: 1; position: relative; overflow: hidden; background: radial-gradient(circle at 25% 35%, rgba(5, 32, 55, 0.35), transparent 32%), #04060f; }
 .starfield, .galaxy-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .starfield { z-index: 0; pointer-events: none; }
-.galaxy-svg { z-index: 5; }
+.galaxy-svg { z-index: 5; touch-action: none; }
 
 .view-tabs-wrap { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); z-index: 30; }
 .view-tabs {
@@ -364,6 +364,10 @@ button, input { font: inherit; }
 .neighbor-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 .empty-panel { padding: 12px; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; color: #435272; font-size: 12px; }
 
+@media (hover: none) and (pointer: coarse) {
+  .tooltip { display: none; }
+}
+
 .tooltip {
   position: fixed;
   z-index: 100;
@@ -437,9 +441,58 @@ button, input { font: inherit; }
   .logo-beta, .repo-bar-item.owner, .repo-bar-item.muted, .hint-text { display: none; }
   .nav-actions .ghost { display: none; }
   .meta-item { padding: 0 9px; }
+  .meta-strip { overflow-x: auto; scrollbar-width: none; }
+  .meta-strip::-webkit-scrollbar { display: none; }
+  .meta-items { flex-shrink: 0; }
   .legend-strip { padding-bottom: 6px; }
-  .legend-chips { max-height: 70px; overflow: hidden; }
+  .legend-chips { max-height: none; overflow-x: auto; overflow-y: hidden; flex-wrap: nowrap; scrollbar-width: none; padding-bottom: 2px; }
+  .legend-chips::-webkit-scrollbar { display: none; }
   .zoom-controls { right: 10px; }
+}
+
+/* Touch devices: larger tap targets */
+@media (hover: none) and (pointer: coarse) {
+  .zoom-btn { width: 44px; height: 44px; font-size: 18px; border-radius: 10px; }
+  .view-tab { padding: 10px 16px; min-height: 40px; }
+  .legend-chip { padding: 8px 12px; min-height: 36px; }
+  .nav-btn { min-height: 40px; }
+  .repo-launch-btn { padding: 0 16px; min-width: 64px; }
+  .lp-outline-btn { padding: 11px 20px; min-height: 44px; }
+  .lp-search-btn { padding: 0 20px; min-height: 50px; }
+  .lp-example-chip { padding: 9px 16px; min-height: 38px; }
+  .lp-cta-primary, .lp-cta-ghost { min-height: 48px; }
+}
+
+/* Inspector as bottom sheet on narrow screens */
+@media (max-width: 600px) {
+  .inspector {
+    top: auto !important;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    max-height: 60vh;
+    border-left: 0;
+    border-top: 1px solid rgba(99, 120, 210, 0.2);
+    border-radius: 16px 16px 0 0;
+    animation: inspector-slide-up 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .inspector-body { max-height: none; }
+}
+
+@keyframes inspector-slide-up {
+  from { opacity: 0; transform: translateY(60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Very small screens */
+@media (max-width: 440px) {
+  .view-tab { padding: 8px 12px; font-size: 11px; }
+  .view-tabs-wrap { top: 8px; }
+  .navbar { padding: 8px 10px; }
+  .nav-btn.primary, .nav-btn.share { padding: 8px 10px; font-size: 11px; }
+  .legend-strip { padding: 6px 10px 6px; }
+  .zoom-controls { right: 8px; }
 }
 
 /* ─── Landing Page ──────────────────────────────────────────────────────────── */
@@ -477,6 +530,7 @@ button, input { font: inherit; }
   overflow-x: hidden;
   background: transparent;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Nav ── */
@@ -899,4 +953,21 @@ button, input { font: inherit; }
   .lp-stat { padding: 20px 20px; }
   .lp-stat-value { font-size: 18px; }
   .lp-footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+@media (max-width: 440px) {
+  .lp-search-prefix { display: none; }
+  .lp-search-input { padding-left: 16px; }
+  .lp-nav { height: 52px; padding: 0 16px; }
+  .lp-logo .logo-beta { display: none; }
+  .lp-hero { padding: 60px 16px 80px; }
+  .lp-section { padding: 48px 16px; }
+  .lp-section-h { margin-bottom: 36px; }
+  .lp-stat-band { flex-direction: column; }
+  .lp-stat { border-right: 0; border-bottom: 1px solid rgba(99, 120, 210, 0.08); padding: 18px 24px; width: 100%; flex-direction: row; justify-content: center; gap: 12px; }
+  .lp-stat:last-child { border-bottom: 0; }
+  .lp-stat-label { text-align: left; }
+  .lp-cta-band { margin: 40px 12px; padding: 50px 20px; border-radius: 16px; }
+  .lp-footer { padding: 18px 16px; }
+  .lp-cards { max-width: 100%; }
+  .lp-step { min-width: 0; max-width: 100%; width: 100%; }
 }

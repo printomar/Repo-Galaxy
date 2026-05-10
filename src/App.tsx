@@ -205,9 +205,6 @@ export function App() {
             <DepsIcon active={tweaks.showDeps} />
             {tweaks.showDeps ? 'Deps on' : 'Deps off'}
           </button>
-          <button className="nav-btn primary" onClick={cycleViewMode}>
-            {tweaks.viewMode === 'force' ? '⬡ Force' : tweaks.viewMode === 'orbital' ? '◎ Orbital' : '✦ Constellation'}
-          </button>
           <button className="nav-btn share" onClick={() => void shareMap()}>
             <ShareIcon />
             Share map
