@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { GalaxyCanvas } from './components/GalaxyCanvas';
 import { Inspector } from './components/Inspector';
+import { LandingPage } from './components/LandingPage';
 import { Starfield } from './components/Starfield';
 import { Toast } from './components/Toast';
 import { DEMO_REPO } from './data/demoRepo';
@@ -22,6 +23,7 @@ const DEFAULT_TWEAKS: TweaksState = {
 
 export function App() {
   const initialUrlState = useMemo(() => readUrlState(), []);
+  const [showLanding, setShowLanding] = useState(() => !initialUrlState.owner);
   const [tweaks, setTweaks] = useState<TweaksState>({ ...DEFAULT_TWEAKS, viewMode: initialUrlState.view || DEFAULT_TWEAKS.viewMode });
   const [repo, setRepo] = useState<RepoGalaxyData>(DEMO_REPO);
   const [selected, setSelected] = useState<GalaxyNode | null>(null);
@@ -155,11 +157,23 @@ export function App() {
     setToast('Share URL copied');
   }, [filterExt, repo.name, repo.owner, tweaks.viewMode]);
 
+  if (showLanding) {
+    return (
+      <LandingPage
+        onLaunch={(input) => {
+          setShowLanding(false);
+          void loadRepo(input);
+        }}
+        onDemo={() => setShowLanding(false)}
+      />
+    );
+  }
+
   return (
     <div className="app-shell">
       <nav className="navbar">
         <div className="nav-left">
-          <a className="navbar-logo" href="/" aria-label="Repo Galaxy">
+          <a className="navbar-logo" href="/" aria-label="Repo Galaxy" onClick={(e) => { e.preventDefault(); setShowLanding(true); }}>
             <span className="logo-mark">✦</span>
             <span className="logo-text">Repo Galaxy</span>
             <span className="logo-beta">BETA</span>
