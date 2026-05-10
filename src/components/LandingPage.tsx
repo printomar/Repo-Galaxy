@@ -7,7 +7,7 @@ interface Props {
 }
 
 const EXAMPLES = [
-  { display: 'vitejs/vite', value: 'github.com/vitejs/vite' },
+  { display: 'reduxjs/redux', value: 'github.com/reduxjs/redux' },
   { display: 'expressjs/express', value: 'github.com/expressjs/express' },
   { display: 'axios/axios', value: 'github.com/axios/axios' },
 ];
