@@ -2,6 +2,16 @@
 
 Repo Galaxy is a web app that turns a public GitHub repository into an interactive galaxy map. Files become planets, folders become solar systems, and supported JavaScript/TypeScript imports become dependency links.
 
+## Screenshots
+
+![Landing page](docs/screenshots/landing.png)
+
+![Force view](docs/screenshots/force-view.png)
+
+![Orbital view](docs/screenshots/orbital-view.png)
+
+![Constellation view with inspector](docs/screenshots/constellation-inspector.png)
+
 ## Features
 
 - Public GitHub repo loading from `github.com/owner/repo`
