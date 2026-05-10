@@ -60,6 +60,10 @@ npm test         # Run unit tests
 npm run e2e      # Run Playwright browser tests
 ```
 
+## Author
+
+Created by **Omar** — [@printomar](https://github.com/printomar) on GitHub · [@omarbuilds.ai](https://www.instagram.com/omarbuilds.ai) on Instagram.
+
 ## GitHub Analysis Notes
 
 The MVP uses public GitHub APIs and does not require authentication. It fetches the repository tree, builds folder/file nodes, and scans a capped set of JS/TS-family source files for static imports, re-exports, dynamic string imports, and simple `require(...)` calls.

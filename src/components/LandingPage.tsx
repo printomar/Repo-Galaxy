@@ -190,6 +190,12 @@ export function LandingPage({ onLaunch, onDemo }: Props) {
             <span>Repo Galaxy</span>
           </div>
           <span className="lp-footer-copy">Built with React + D3 · No sign-in required</span>
+          <span className="lp-footer-copy">
+            Created by{' '}
+            <a href="https://github.com/printomar" target="_blank" rel="noopener noreferrer" style={{ color: '#a78bfa', textDecoration: 'none' }}>@printomar</a>
+            {' · '}
+            <a href="https://www.instagram.com/omarbuilds.ai" target="_blank" rel="noopener noreferrer" style={{ color: '#a78bfa', textDecoration: 'none' }}>@omarbuilds.ai</a>
+          </span>
         </footer>
       </div>
     </>
